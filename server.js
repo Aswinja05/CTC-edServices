@@ -259,7 +259,7 @@ const verifyToken = async (req, res, next) => {
 
 
 // **Fetch All Courses (For Carousel)**
-app.get("/get-courses", async (req, res) => {
+app.get("/api/get-courses", async (req, res) => {
   try {
     const courses = await Course.find({}); // Fetch only required fields
     res.json(courses);
@@ -269,7 +269,7 @@ app.get("/get-courses", async (req, res) => {
 });
 
 // **Fetch Course Details**
-app.get("/get-course/:id", async (req, res) => {
+app.get("/api/get-course/:id", async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);
     if (!course) return res.status(404).json({ error: "Course not found" });
@@ -394,7 +394,7 @@ app.get("/rqPage", verifyToken, checkAdmin, async (req, res) => {
   res.sendFile(__dirname + "/public/rqPage.html");
 });
 
-app.post("/teacher-request", async (req, res) => {
+app.post("/api/teacher-request", async (req, res) => {
   try {
     const {
       name,
@@ -431,7 +431,7 @@ app.post("/teacher-request", async (req, res) => {
   }
 });
 
-app.get("/get-teacher-requests", async (req, res) => {
+app.get("/api/get-teacher-requests", async (req, res) => {
   try {
     const requests = await TeacherRequest.find({});
     res.json(requests);
@@ -463,7 +463,7 @@ app.put("/approve-teacher/:id", async (req, res) => {
   }
 });
 
-app.post("/institution-contact", async (req, res) => {
+app.post("/api/institution-contact", async (req, res) => {
   try {
     const { iname, imail, iphone, aname, aphone } = req.body;
 
@@ -479,7 +479,7 @@ app.post("/institution-contact", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
-app.post("/enroll-now", async (req, res) => {
+app.post("/api/enroll-now", async (req, res) => {
   try {
       const { StudentName, StudentMail, StudentPhone, courseName } = req.body;
       
@@ -506,7 +506,7 @@ const sendEmail = async (to, subject, text) => {
   return transporter.sendMail(mailOptions);
 };
 
-app.get("/tutorDetails/:uid", async (req, res) => {
+app.get("/api/tutorDetails/:uid", async (req, res) => {
   try {
     const user = await AdminTeacher.findOne({ uid: req.params.uid });
     if (!user) return res.status(404).json({ error: "User not found" });
@@ -516,7 +516,7 @@ app.get("/tutorDetails/:uid", async (req, res) => {
   }
 });
 
-app.get("/get-courses-by-category/:category", async (req, res) => {
+app.get("/api/get-courses-by-category/:category", async (req, res) => {
   try {
     const courses = await Course.find({ category: req.params.category });
     res.json(courses);
@@ -524,7 +524,7 @@ app.get("/get-courses-by-category/:category", async (req, res) => {
     res.status(500).json({ error: "Error fetching courses" });
   }
 });
-app.get("/categories", async (req, res) => {
+app.get("/api/categories", async (req, res) => {
   try {
     const categories = await Course.distinct("category");
     res.json(categories);
