@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
+        node-version: [222.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -31,26 +31,26 @@ jobs:
     - name: Build React (Vite)
       run: npm run build
 
-    # - name: Deploy frontend to Nginx root
-    #   run: |
-    #     rsync -a --delete dist/ /var/www/app/
+    - name: Deploy frontend to Nginx root
+      run: |
+        rsync -a --delete dist/ /var/www/app/
 
 
-    # - name: Deploy backend to /opt/app/current
-    #   run: |
-    #     rsync -a --delete server.js package*.json /opt/app/current/
-    #     cd /opt/app/current
-    #     npm ci --omit=dev
+    - name: Deploy backend to /opt/app/current
+      run: |
+        rsync -a --delete server.js package*.json /opt/app/current/
+        cd /opt/app/current
+        npm ci --omit=dev
 
 
-    # - name: Restart PM2 (backend)
-    #   run: |
-    #     pm2 startOrReload /home/ubuntu/ecosystem.config.js || true
-    #     pm2 save
+    - name: Restart PM2 (backend)
+      run: |
+        pm2 startOrReload /home/ubuntu/ecosystem.config.js || true
+        pm2 save
 
 
-    # - name: Reload Nginx
-    #   run: sudo systemctl reload nginx
+    - name: Reload Nginx
+      run: sudo systemctl reload nginx
 
     - name: Create .env
       run: |
