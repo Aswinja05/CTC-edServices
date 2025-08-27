@@ -176,7 +176,7 @@ const CoursePage = () => {
       <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 text-white py-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl">
+          <div className="max-w-5xl">
             <div className="flex justify-between items-center pb-2 pr-2">
               <Link to="/">
                 <img 
@@ -407,7 +407,7 @@ const CoursePage = () => {
                   
                   <Link to={`/Enroll/${courseIdForEnrollment}`}>
                     <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-6 rounded-xl mb-6 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                      {course.price && course.price > 0 ? 'Enroll Now' : 'Start Free Course'}
+                      {course.price && course.price > 0 ? 'Get Started' : 'Start Free Course'}
                     </button>
                   </Link>
                   
