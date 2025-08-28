@@ -72,7 +72,7 @@ const companies = [
               Where Your Talent
               <span className="block text-blue-600">Meets Opportunity</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-md">
+            <p className="text-lg text-gray-600 max-w-sm md:max-w-md">
               Excel in your performance and unlock our exclusive placement assistance. We connect our top students with internships and Pre-Placement Offers (PPOs) at world-leading technology firms.
             </p>
             <div className="pt-4">
