@@ -56,12 +56,11 @@ const Enroll = () => {
         if (!formData.StudentPhone.trim()) {
             newErrors.StudentPhone = 'Student phone is required';
         } else {
-            const phoneRegex = /^\d{10}$/;
+            const phoneRegex = /^\d{10,13}$/;
             if (!phoneRegex.test(formData.StudentPhone)) {
                 newErrors.StudentPhone = 'Phone number must be exactly 10 digits';
             }
         }
-
         return newErrors;
     };
 
@@ -282,9 +281,14 @@ const Enroll = () => {
                                 value={formData.StudentName}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                                    errors.StudentName ? 'border-red-500' : 'border-gray-300'
+                                }`}
                                 placeholder="Enter Name"
                             />
+                            {errors.StudentName && (
+                                <p className="text-red-500 text-xs mt-1">{errors.StudentName}</p>
+                            )}
                         </div>
 
                         <div className="space-y-1">
@@ -298,9 +302,14 @@ const Enroll = () => {
                                 value={formData.StudentMail}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                                    errors.StudentMail ? 'border-red-500' : 'border-gray-300'
+                                }`}
                                 placeholder="abc@email.com"
                             />
+                            {errors.StudentMail && (
+                                <p className="text-red-500 text-xs mt-1">{errors.StudentMail}</p>
+                            )}
                         </div>
 
                         <div className="space-y-1">
@@ -314,9 +323,14 @@ const Enroll = () => {
                                 value={formData.StudentPhone}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                                    errors.StudentPhone ? 'border-red-500' : 'border-gray-300'
+                                }`}
                                 placeholder="+91 1234567890"
                             />
+                            {errors.StudentPhone && (
+                                <p className="text-red-500 text-xs mt-1">{errors.StudentPhone}</p>
+                            )}
                         </div>
 
                         <div className="pt-5">
